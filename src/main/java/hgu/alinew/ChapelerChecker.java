@@ -18,8 +18,9 @@ public class ChapelerChecker {
 	private String youtubeURL;
 	private String chromeDriverPath;
 	private String professorName;
+	private int pauseTime;
 
-	public ChapelerChecker(String youtubeURL, String chromeDriverPath, String professorName) {
+	public ChapelerChecker(String youtubeURL, String chromeDriverPath, String professorName, int pauseTime) {
 		super();
 		this.youtubeURL = youtubeURL;
 		this.chromeDriverPath = chromeDriverPath;
@@ -42,7 +43,7 @@ public class ChapelerChecker {
 			// This will scroll the web page till end.
 			js.executeScript("document.body.scrollTop = document.body.scrollHeight;");
 			js.executeScript("document.documentElement.scrollTop = document.documentElement.scrollHeight;");
-			Thread.sleep(3000);
+			Thread.sleep(pauseTime * 1000L);
 
 			long newPageHeight = (long) js.executeScript("return document.documentElement.scrollHeight");
 

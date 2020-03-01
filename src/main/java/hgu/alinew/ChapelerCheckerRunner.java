@@ -14,11 +14,12 @@ public class ChapelerCheckerRunner {
 	private String youtubeURL;
 	private String chromeDriverPath;
 	private String professorName;
+	private int pauseTime;
 	private boolean help;
 
 	public static void main(String[] args) {
 		ChapelerCheckerRunner runner = new ChapelerCheckerRunner();
-		
+
 		try {
 			runner.run(args);
 		} catch (IOException | InterruptedException e) {
@@ -49,6 +50,11 @@ public class ChapelerCheckerRunner {
 								.required(true)
 								.build());
 
+		options.addOption(Option.builder("t")
+								.desc("Pause time")
+								.hasArg()
+								.build());
+
 		options.addOption(Option.builder("h")
 								.longOpt("help")
 								.desc("Help")
@@ -69,6 +75,7 @@ public class ChapelerCheckerRunner {
 			youtubeURL = cmd.getOptionValue('u');
 			chromeDriverPath = cmd.getOptionValue('p');
 			professorName = cmd.getOptionValue('n');
+			pauseTime = (cmd.hasOption('t')) ? Integer.parseInt(cmd.getOptionValue('t')) : 3 ;
 			help = cmd.hasOption('h');
 
 		} catch (ParseException e) {
@@ -103,9 +110,10 @@ public class ChapelerCheckerRunner {
 			System.out.println("Youtube URL : " + youtubeURL);
 			System.out.println("Chrome Driver Path : " + chromeDriverPath);
 			System.out.println("Professor's name : " + professorName);
+			System.out.println("Pause time : " + pauseTime);
 			System.out.println("========================================\n");
-			
-			ChapelerChecker checker = new ChapelerChecker(youtubeURL, chromeDriverPath, professorName);
+
+			ChapelerChecker checker = new ChapelerChecker(youtubeURL, chromeDriverPath, professorName, pauseTime);
 			checker.run();
 		}
 	}
