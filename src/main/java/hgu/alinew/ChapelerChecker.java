@@ -15,21 +15,26 @@ import hgu.alinew.model.ChapelerInfo;
 import hgu.alinew.util.Utils;
 
 public class ChapelerChecker {
+	private String youtubeURL;
+	private String chromeDriverPath;
+	private String professorName;
 
-	private static final String URL = "https://www.youtube.com/watch?v=vW6dzGwpSTM";
-	private static final String CHROME_DRIVER_LOCATION = "/Users/kimseokjin/Downloads/chromedriver";
-	private static final String PROFESSOR_NAME = "아이들";
+	public ChapelerChecker(String youtubeURL, String chromeDriverPath, String professorName) {
+		super();
+		this.youtubeURL = youtubeURL;
+		this.chromeDriverPath = chromeDriverPath;
+		this.professorName = professorName;
+	}
 
-	public static void main(String[] args) throws InterruptedException, IOException {
-
-		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_LOCATION);
+	public void run() throws IOException, InterruptedException {
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 
 		WebDriver driver = new ChromeDriver();
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		// Launch the application
-		driver.get(URL);
+		driver.get(youtubeURL);
 
 		long lastPageHeight = (long) js.executeScript("return document.documentElement.scrollHeight");
 
@@ -55,7 +60,7 @@ public class ChapelerChecker {
 			String comment = elem.getText();
 
 			// Check comment whether matches format or not
-			boolean isCorrectFormat = Pattern.compile("(\\s*" + PROFESSOR_NAME + ".*\\/\\s*\\d{8}\\s*\\/.*\\/.*)")
+			boolean isCorrectFormat = Pattern.compile("(\\s*" + professorName + ".*\\/\\s*\\d{8}\\s*\\/.*\\/.*)")
 					.matcher(comment).matches();
 
 			if (!isCorrectFormat)
@@ -63,15 +68,15 @@ public class ChapelerChecker {
 
 			String[] chaplerInfoArr = comment.split("\\/");
 
-			ChapelerInfo aChapelerInfo = new ChapelerInfo(chaplerInfoArr[0].trim(), chaplerInfoArr[1].trim(),chaplerInfoArr[2].trim());
+			ChapelerInfo aChapelerInfo = new ChapelerInfo(chaplerInfoArr[0].trim(), chaplerInfoArr[1].trim(),
+					chaplerInfoArr[2].trim());
 
 			chaplersList.add(aChapelerInfo);
 		}
 
 		// write excel file
-		Utils.storeResults(chaplersList, PROFESSOR_NAME);
+		Utils.storeResults(chaplersList, professorName);
 
 		driver.close();
 	}
-
 }
