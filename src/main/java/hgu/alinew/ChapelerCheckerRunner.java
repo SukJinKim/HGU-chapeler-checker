@@ -49,11 +49,6 @@ public class ChapelerCheckerRunner {
 								.required(true)
 								.build());
 
-		options.addOption(Option.builder("t")
-								.desc("Pause time")
-								.hasArg()
-								.build());
-
 		options.addOption(Option.builder("h")
 								.longOpt("help")
 								.desc("Help")
