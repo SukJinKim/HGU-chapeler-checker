@@ -42,10 +42,6 @@ You can find the executable file located in build/distributions/HGU-chapeler-che
 
 > ./HGU-chapeler-checker -u [YOUTUBE_URL] -p [CHROME_DRIVER_PATH] -n [PROFESSOR_NAME]
 
-* 네트워크 환경이 나쁠 때 pause 시간을 직접 설정하여 실행하기
-
-> ./HGU-chapeler-checker -u [YOUTUBE_URL] -p [CHROME_DRIVER_PATH] -n [PROFESSOR_NAME] -t [PAUSE_TIME]
-
 * Help message 보기
 
 > ./HGU-chapeler-checker -h
@@ -55,10 +51,6 @@ You can find the executable file located in build/distributions/HGU-chapeler-che
 * 일반적인 실행 예제
 
 > ./HGU-chapeler-checker -u 'https://www.youtube.com/watch?v=vW6dzGwpSTM' -p /Users/kimseokjin/Downloads/chromedriver -n 아이들
-
-* 5초동안 pause하면서 실행하는 예제
-
-> ./HGU-chapeler-checker -u 'https://www.youtube.com/watch?v=vW6dzGwpSTM' -p /Users/kimseokjin/Downloads/chromedriver -n 아이들 -t 5
 
 ***Note that Youtube URL should be quoted!***
 
