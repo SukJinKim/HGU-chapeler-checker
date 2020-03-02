@@ -110,7 +110,7 @@ or
 
 ### 사용법 동영상 (Usage Video)
 * Mac
-</br> Youtube Link here
+</br> https://www.youtube.com/watch?v=t5-LnlJZgqY
 
 * Windows
 </br> Coming soon...
