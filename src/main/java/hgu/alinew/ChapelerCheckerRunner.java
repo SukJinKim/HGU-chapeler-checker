@@ -13,7 +13,7 @@ import org.apache.commons.cli.ParseException;
 public class ChapelerCheckerRunner {
 	private String youtubeURL;
 	private String chromeDriverPath;
-	private String professorName;
+	private String teamName;
 	private boolean help;
 
 	public static void main(String[] args) {
@@ -44,7 +44,7 @@ public class ChapelerCheckerRunner {
 								.build());
 
 		options.addOption(Option.builder("n")
-								.desc("Professor Name")
+								.desc("Team name")
 								.hasArg()
 								.required(true)
 								.build());
@@ -68,7 +68,7 @@ public class ChapelerCheckerRunner {
 
 			youtubeURL = cmd.getOptionValue('u');
 			chromeDriverPath = cmd.getOptionValue('p');
-			professorName = cmd.getOptionValue('n');
+			teamName = cmd.getOptionValue('n');
 			help = cmd.hasOption('h');
 
 		} catch (ParseException e) {
@@ -102,10 +102,10 @@ public class ChapelerCheckerRunner {
 			System.out.println("\n============== Input Info ==============");
 			System.out.println("Youtube URL : " + youtubeURL);
 			System.out.println("Chrome Driver Path : " + chromeDriverPath);
-			System.out.println("Professor's name : " + professorName);
+			System.out.println("Team name : " + teamName);
 			System.out.println("========================================\n");
 
-			ChapelerChecker checker = new ChapelerChecker(youtubeURL, chromeDriverPath, professorName);
+			ChapelerChecker checker = new ChapelerChecker(youtubeURL, chromeDriverPath, teamName);
 			checker.run();
 		}
 	}

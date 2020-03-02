@@ -15,7 +15,7 @@ import hgu.alinew.model.ChapelerInfo;
 public class Utils {
 
 	public static void storeResults (List<ChapelerInfo> chapelerList, String profName) throws IOException {
-		String fName = System.getProperty("user.dir") + File.separator + "results" + File.separator + profName + " 교수님 채플 참석자 명단" + ".xlsx";
+		String fName = System.getProperty("user.dir") + File.separator + "results" + File.separator + profName + " 팀 채플 참석자 명단" + ".xlsx";
 
 		File savedFile = new File(fName);
 		savedFile.getParentFile().mkdirs();
@@ -51,7 +51,7 @@ public class Utils {
 	    cell.setCellValue(aChapler.getStudentId());
 
 	    cell = row.createCell(3);
-	    cell.setCellValue(aChapler.getStudentName());
+	    cell.setCellValue(aChapler.getAttendance());
 	}
 
 }

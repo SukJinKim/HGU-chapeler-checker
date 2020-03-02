@@ -3,13 +3,13 @@ package hgu.alinew.model;
 public class ChapelerInfo {
 	private String teamInfo;
 	private String studentId;
-	private String studentName;
+	private String attendance;
 
-	public ChapelerInfo(String teamProfessorName, String studentId, String studentName) {
+	public ChapelerInfo(String teamProfessorName, String studentId, String attendance) {
 		super();
 		this.teamInfo = teamProfessorName;
 		this.studentId = studentId;
-		this.studentName = studentName;
+		this.attendance = attendance;
 	}
 
 	public String getTeamInfo() {
@@ -28,11 +28,11 @@ public class ChapelerInfo {
 		this.studentId = studentId;
 	}
 
-	public String getStudentName() {
-		return studentName;
+	public String getAttendance() {
+		return attendance;
 	}
 
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+	public void setAttendance(String attendance) {
+		this.attendance = attendance;
 	}
 }

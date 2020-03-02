@@ -60,16 +60,14 @@ public class ChapelerChecker {
 			String comment = elem.getText();
 
 			// Check comment whether matches format or not
-			boolean isCorrectFormat = Pattern.compile("(\\s*" + professorName + ".*\\/\\s*\\d{8}\\s*\\/.*\\/.*)")
-					.matcher(comment).matches();
+			boolean isCorrectFormat = Pattern.compile("(\\s*" + professorName + ".*\\/\\s*\\d{8}\\s*\\/.*)").matcher(comment).matches();
 
 			if (!isCorrectFormat)
 				continue;
 
 			String[] chaplerInfoArr = comment.split("\\/");
 
-			ChapelerInfo aChapelerInfo = new ChapelerInfo(chaplerInfoArr[0].trim(), chaplerInfoArr[1].trim(),
-					chaplerInfoArr[2].trim());
+			ChapelerInfo aChapelerInfo = new ChapelerInfo(chaplerInfoArr[0].trim(), chaplerInfoArr[1].trim(),chaplerInfoArr[2].trim());
 
 			chaplersList.add(aChapelerInfo);
 		}
