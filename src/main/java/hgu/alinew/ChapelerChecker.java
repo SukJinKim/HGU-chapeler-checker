@@ -17,13 +17,13 @@ import hgu.alinew.util.Utils;
 public class ChapelerChecker {
 	private String youtubeURL;
 	private String chromeDriverPath;
-	private String professorName;
+	private String teamName;
 
-	public ChapelerChecker(String youtubeURL, String chromeDriverPath, String professorName) {
+	public ChapelerChecker(String youtubeURL, String chromeDriverPath, String teamName) {
 		super();
 		this.youtubeURL = youtubeURL;
 		this.chromeDriverPath = chromeDriverPath;
-		this.professorName = professorName;
+		this.teamName = teamName;
 	}
 
 	public void run() throws IOException, InterruptedException {
@@ -37,12 +37,17 @@ public class ChapelerChecker {
 		driver.get(youtubeURL);
 
 		long lastPageHeight = (long) js.executeScript("return document.documentElement.scrollHeight");
-		
+
+		// Count the number of scroll down to check the range of the number of comments
+		int numScrollDown = 0;
+
 		while (true) {
 			// This will scroll the web page till end.
 			js.executeScript("document.body.scrollTop = document.body.scrollHeight;");
 			js.executeScript("document.documentElement.scrollTop = document.documentElement.scrollHeight;");
 			Thread.sleep(5000);
+
+			numScrollDown++;
 
 			long newPageHeight = (long) js.executeScript("return document.documentElement.scrollHeight");
 
@@ -52,6 +57,9 @@ public class ChapelerChecker {
 			lastPageHeight = newPageHeight;
 		}
 
+		// print out range of the number of comments to check whether network was fine during execution
+		Utils.printRangeOfTheNumberOfComments(numScrollDown);
+
 		List<WebElement> elems = driver.findElements(By.cssSelector("yt-formatted-string#content-text"));
 
 		List<ChapelerInfo> chaplersList = new ArrayList<>();
@@ -60,7 +68,7 @@ public class ChapelerChecker {
 			String comment = elem.getText();
 
 			// Check comment whether matches format or not
-			boolean isCorrectFormat = Pattern.compile("(\\s*" + professorName + ".*\\/\\s*\\d{8}\\s*\\/.*)").matcher(comment).matches();
+			boolean isCorrectFormat = Pattern.compile("(\\s*" + teamName + ".*\\/\\s*\\d{8}\\s*\\/.*)").matcher(comment).matches();
 
 			if (!isCorrectFormat)
 				continue;
@@ -73,7 +81,7 @@ public class ChapelerChecker {
 		}
 
 		// write excel file
-		Utils.storeResults(chaplersList, professorName);
+		Utils.storeResults(chaplersList, teamName);
 
 		driver.close();
 	}
