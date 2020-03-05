@@ -22,6 +22,10 @@ Ver 1.1 (released 2020. 03. 02)
   - SHA-1 : 6485508623aa9875228236b3a41b81de40011ef6
   - Remarks : [Hisnet 공지](https://hisnet.handong.edu/myboard/read.php?id=121303&Page=1&Board=NB0001&FindIt=subject&FindText=%C3%A4%C7%C3)에서 언급한 형식으로 댓글 작성하도록 코드 수정
 
+Ver 1.1.1 (released 2020. 03. 05)
+- SHA-1 :50cb1cb6ee3d06589ff132bd14cd2b7573c07dd3
+- Remarks : 동적 크롤러기 때문에 스크롤을 내린 후 5초를 기다리는 동안 댓글을 못 가져오는 경우 즉, 네트워크 환경이 좋지 않은 경우에는 제대로 된 결과를 가져올 수 없다. 따라서 마지막에 댓글 갯수의 범위를 출력하여 사용자로 하여금 재실행 여부를 빠르게 결정할 수 있게 함.
+
 ***
 
 ## Future works
@@ -110,7 +114,7 @@ or
 
 ### 사용법 동영상 (Usage Video)
 * Mac
-</br> https://www.youtube.com/watch?v=t5-LnlJZgqY
+</br> Youtube Link here
 
 * Windows
 </br> Coming soon...
